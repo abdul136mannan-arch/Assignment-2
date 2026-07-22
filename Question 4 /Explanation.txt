@@ -1,1 +1,14 @@
+tail -f
+Continuously monitors the log file for new entries.
 
+grep "ERROR"
+Filters only the lines containing the word ERROR.
+
+Pipe (|)
+Passes the output of one command directly to the next command.
+
+tee -a
+Displays the output while simultaneously appending it to error_report.txt.
+
+2>/dev/null
+Suppresses unnecessary error messages by redirecting them to /dev/null.
