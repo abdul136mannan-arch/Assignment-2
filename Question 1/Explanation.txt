@@ -1,1 +1,15 @@
+mkdir -p
+Creates the backup directory if it does not already exist.
 
+sha256sum
+Generates a unique checksum for each file. Files with identical checksums are considered duplicates.
+
+cp
+Copies only unique files into the backup directory.
+
+2>> error.log
+Redirects all error messages into a separate log file.
+
+> and >>
+> creates the report file.
+>> appends additional information to the report.
