@@ -1,42 +1,40 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <fcntl.h>
 #include <unistd.h>
-#include <sys/wait.h>
-#include <signal.h>
+#include <string.h>
+
+struct Employee
+{
+    int id;
+    char name[20];
+};
 
 int main()
 {
-    pid_t pid[3];
+    int fd=open("employees.dat",O_RDWR|O_CREAT,0644);
 
-    for(int i=0;i<3;i++)
+    struct Employee e1={1,"Alice"};
+    struct Employee e2={2,"Bob"};
+
+    write(fd,&e1,sizeof(e1));
+    write(fd,&e2,sizeof(e2));
+
+    struct Employee update={2,"Robert"};
+
+    lseek(fd,sizeof(struct Employee),SEEK_SET);
+
+    write(fd,&update,sizeof(update));
+
+    lseek(fd,0,SEEK_SET);
+
+    struct Employee temp;
+
+    while(read(fd,&temp,sizeof(temp))>0)
     {
-        pid[i]=fork();
-
-        if(pid[i]==0)
-        {
-            printf("Child %d started\n",getpid());
-
-            if(i==2)
-                sleep(15);
-            else
-                sleep(3);
-
-            printf("Child %d finished\n",getpid());
-            exit(0);
-        }
+        printf("%d %s\n",temp.id,temp.name);
     }
 
-    sleep(5);
-
-    if(kill(pid[2],0)==0)
-    {
-        printf("Terminating unresponsive child %d\n",pid[2]);
-        kill(pid[2],SIGKILL);
-    }
-
-    while(wait(NULL)>0);
-
-    printf("All child processes handled successfully.\n");
+    close(fd);
 
     return 0;
 }
