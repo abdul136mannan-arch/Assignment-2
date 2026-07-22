@@ -1,1 +1,11 @@
+fork()
+Creates a new child process.
 
+wait()
+Collects terminated child processes and prevents zombie processes.
+
+kill()
+Sends a signal to terminate an unresponsive child.
+
+SIGKILL
+Immediately stops the child process.
