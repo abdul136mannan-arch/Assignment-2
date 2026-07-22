@@ -1,11 +1,14 @@
-fork()
-Creates a new child process.
+open()
+Creates or opens the employee file.
 
-wait()
-Collects terminated child processes and prevents zombie processes.
+write()
+Stores employee records.
 
-kill()
-Sends a signal to terminate an unresponsive child.
+lseek()
+Moves directly to the required record for updating.
 
-SIGKILL
-Immediately stops the child process.
+read()
+Retrieves employee records efficiently.
+
+close()
+Closes the file and releases system resources.
