@@ -1,1 +1,7 @@
-
+Child 1606 started
+Child 1608 started
+Child 1607 started
+Child 1606 finished
+Child 1607 finished
+Terminating unresponsive child 1608
+All child processes handled successfully.
